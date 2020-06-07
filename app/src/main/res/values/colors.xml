@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#8390FA</color>
+    <color name="colorPrimaryDark">#081CB8</color>
+    <color name="colorAccent">#FFBE0B</color>
+    <color name="rood">#B3001B</color>
+    <color name="oranje">#F08700</color>
+    <color name="groen">#006600</color>
+    <color name="themaMango">#FFBE0B</color>
+    <color name="themaLichtBlauw">#8390FA</color>
+    <color name="black">#0a0a0a</color>
+
 </resources>
