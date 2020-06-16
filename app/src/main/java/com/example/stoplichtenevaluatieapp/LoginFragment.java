@@ -1,5 +1,6 @@
 package com.example.stoplichtenevaluatieapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ public class LoginFragment extends Fragment {
     private static final String TAG = "MainActivity";
 
     private FirebaseAuth mAuth;
+    private Boolean firstTryDone = false;
 
     @Override
     public View onCreateView(
@@ -58,14 +60,17 @@ public class LoginFragment extends Fragment {
     public void  updateUI(FirebaseUser account){
         if(account != null){
             Toast.makeText(this.getActivity(),"U Signed In successfully", Toast.LENGTH_LONG).show();
-            NavHostFragment.findNavController(LoginFragment.this)
-                    .navigate(R.id.action_LoginFragment_to_FirstFragment);
-        }else {
+//            NavHostFragment.findNavController(LoginFragment.this)
+//                    .navigate(R.id.action_LoginFragment_to_FirstFragment);
+            Intent intent = new Intent(this.getActivity(), HomeScreen.class);
+            startActivity(intent);
+        }else if (firstTryDone) {
             Toast.makeText(this.getActivity(),"U Didnt signed in",Toast.LENGTH_LONG).show();
         }
     }
 
     public void login(String username, String password) {
+        this.firstTryDone = true;
         mAuth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
@@ -81,10 +86,7 @@ public class LoginFragment extends Fragment {
                             Toast.makeText(getActivity(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
-                            // ...
                         }
-
-                        // ...
                     }
                 });
     }

@@ -1,5 +1,6 @@
 package com.example.stoplichtenevaluatieapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
+
 }
