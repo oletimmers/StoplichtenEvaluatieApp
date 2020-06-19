@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/First2Fragment"
-        android:name="com.example.stoplichtenevaluatieapp.First2Fragment"
+        android:name="com.example.stoplichtenevaluatieapp.ListFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first2">
+        tools:layout="@layout/fragment_list">
 
         <action
             android:id="@+id/action_First2Fragment_to_Second2Fragment"
