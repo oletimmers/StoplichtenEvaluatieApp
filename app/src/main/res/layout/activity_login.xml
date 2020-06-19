@@ -63,6 +63,7 @@
         android:layout_marginBottom="80dp"
         android:enabled="true"
         android:text="@string/action_sign_in"
+        android:backgroundTint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
