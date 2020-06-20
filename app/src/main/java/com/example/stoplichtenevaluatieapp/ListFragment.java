@@ -5,12 +5,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.stoplichtenevaluatieapp.adapters.MeetingAdapter;
 import com.example.stoplichtenevaluatieapp.models.Meeting;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -21,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,8 +34,10 @@ import java.util.Set;
 public class ListFragment extends Fragment {
     private static final String TAG = "ListFragment";
 
-    ListView meetingsView;
     ArrayList<Meeting> meetings;
+    ListView meetingsView;
+    private static MeetingAdapter adapter;
+    private static Date dt = new Date();
 
     @Override
     public View onCreateView(
@@ -45,16 +50,19 @@ public class ListFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        meetings = new ArrayList<Meeting>();
-        meetingsView = view.findViewById(R.id.meetingsThisDay);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Date dt = new Date();
+
+        meetingsView = (ListView)view.findViewById(R.id.meetingsThisDay);
+        meetings = new ArrayList<Meeting>();
+
+        // Gisteren en morgen bepalen
         Calendar yesterday = Calendar.getInstance();
         Calendar tomorrow = Calendar.getInstance();
         yesterday.setTime(dt);
         tomorrow.setTime(dt);
         yesterday.add(Calendar.DATE, -1);
         tomorrow.add(Calendar.DATE, 1);
+
         db.collection("meetings")
                 .whereGreaterThan("date", yesterday.getTime())
                 .whereLessThan("date", tomorrow.getTime())
@@ -69,18 +77,14 @@ public class ListFragment extends Fragment {
 //                                Log.d(TAG, document.getId() + " => " + document.getData());
 //                                Log.d(TAG,"MEETING NAAM: "+ meetingToAdd.name);
                             }
+                            adapter = new MeetingAdapter(meetings, getContext());
+                            meetingsView.setAdapter(adapter);
+
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
 
-//        view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                NavHostFragment.findNavController(ListFragment.this)
-//                        .navigate(R.id.action_First2Fragment_to_Second2Fragment);
-//            }
-//        });
     }
 }

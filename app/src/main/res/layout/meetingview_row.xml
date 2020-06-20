@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/meeting"
+    android:layout_width="fill_parent"
+
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:paddingLeft="12dip"
+    android:paddingTop="6dip"
+    android:paddingRight="6dip"
+    android:paddingBottom="3dip">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="12dip"
+        android:contentDescription="TODO"
+        android:src="@drawable/ic_baseline_group_24" />
+
+    <TextView
+        android:id="@+id/meeting_subtitle"
+        android:layout_width="fill_parent"
+        android:layout_height="26dip"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/icon"
+        android:ellipsize="marquee"
+        android:maxLines="1"
+        android:text="Meeting description"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/meeting_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_above="@id/meeting_subtitle"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/icon"
+        android:gravity="center_vertical"
+        android:text="Meeting"
+        android:textSize="16sp" />
+
+</RelativeLayout>
