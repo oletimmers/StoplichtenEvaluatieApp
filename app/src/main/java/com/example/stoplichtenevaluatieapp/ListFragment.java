@@ -17,6 +17,7 @@ import com.example.stoplichtenevaluatieapp.models.Meeting;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -37,7 +38,7 @@ public class ListFragment extends Fragment {
     ArrayList<Meeting> meetings;
     ListView meetingsView;
     private static MeetingAdapter adapter;
-    private static Date dt = new Date();
+    public static Date dt = new Date();
 
     @Override
     public View onCreateView(
@@ -54,14 +55,20 @@ public class ListFragment extends Fragment {
 
         meetingsView = (ListView)view.findViewById(R.id.meetingsThisDay);
         meetings = new ArrayList<Meeting>();
+        this.getMeetings();
+    }
 
+    public void getMeetings() {
         // Gisteren en morgen bepalen
+        Snackbar.make(this.getView(), "Get meetings", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
         Calendar yesterday = Calendar.getInstance();
         Calendar tomorrow = Calendar.getInstance();
         yesterday.setTime(dt);
         tomorrow.setTime(dt);
         yesterday.add(Calendar.DATE, -1);
         tomorrow.add(Calendar.DATE, 1);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("meetings")
                 .whereGreaterThan("date", yesterday.getTime())
@@ -85,6 +92,5 @@ public class ListFragment extends Fragment {
                         }
                     }
                 });
-
     }
 }
