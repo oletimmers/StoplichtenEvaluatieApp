@@ -23,4 +23,5 @@
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_home_screen">HomeScreen</string>
     <string name="meetings">Bijeenkomsten</string>
+    <string name="no_meetings_found">Geen bijeenkomsten gevonden</string>
 </resources>

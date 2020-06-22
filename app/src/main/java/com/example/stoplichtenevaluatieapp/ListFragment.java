@@ -17,6 +17,7 @@ import com.example.stoplichtenevaluatieapp.adapters.MeetingAdapter;
 import com.example.stoplichtenevaluatieapp.models.Meeting;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -39,6 +40,8 @@ public class ListFragment extends Fragment {
     public static Date dt = new Date();
 
     RelativeLayout loadingPanel;
+    TextView noMeetingsFound;
+
 
     @Override
     public View onCreateView(
@@ -60,6 +63,8 @@ public class ListFragment extends Fragment {
         meetings = new ArrayList<Meeting>();
 
         loadingPanel = view.findViewById(R.id.loadingPanel);
+        noMeetingsFound = view.findViewById(R.id.no_meetings_found_message);
+        noMeetingsFound.setVisibility(View.GONE);
 
         ImageView left = view.findViewById(R.id.button_left);
         ImageView right = view.findViewById(R.id.button_right);
@@ -116,8 +121,11 @@ public class ListFragment extends Fragment {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Meeting meetingToAdd = document.toObject(Meeting.class);
                                 meetings.add(meetingToAdd);
-//                                Log.d(TAG, document.getId() + " => " + document.getData());
-//                                Log.d(TAG,"MEETING NAAM: "+ meetingToAdd.name);
+                            }
+                            if (meetings.size() < 1) {
+                                noMeetingsFound.setVisibility(View.VISIBLE);
+                            } else {
+                                noMeetingsFound.setVisibility(View.GONE);
                             }
                             adapter = new MeetingAdapter(meetings, getContext());
                             meetingsView.setAdapter(adapter);

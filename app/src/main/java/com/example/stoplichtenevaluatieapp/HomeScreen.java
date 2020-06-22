@@ -2,19 +2,10 @@ package com.example.stoplichtenevaluatieapp;
 
 import android.app.Activity;
 import android.os.Bundle;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class HomeScreen extends AppCompatActivity {
 
