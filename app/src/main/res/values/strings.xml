@@ -24,4 +24,10 @@
     <string name="title_activity_home_screen">HomeScreen</string>
     <string name="meetings">Bijeenkomsten</string>
     <string name="no_meetings_found">Geen bijeenkomsten gevonden</string>
+    <string name="register">Registreer</string>
+    <string name="successful_login">U bent ingelogd</string>
+    <string name="successful_register">U bent geregistreerd</string>
+    <string name="failed_login">U bent niet ingelogd</string>
+    <string name="failed_register">U bent niet geregistreerd</string>
+    <string name="pw_explainer_text">Wachtwoord moet minimaal 6 tekens bevatten</string>
 </resources>
