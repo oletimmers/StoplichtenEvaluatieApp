@@ -23,7 +23,7 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="159dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="24dp"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,36 +49,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/button_left"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/ic_baseline_chevron_left_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/button_right"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/ic_baseline_chevron_right_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/dateToShow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="107dp"
-        android:text="00-00-0000"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
