@@ -1,10 +1,13 @@
 package com.example.stoplichtenevaluatieapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -15,14 +18,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.stoplichtenevaluatieapp.adapters.MeetingAdapter;
 import com.example.stoplichtenevaluatieapp.models.Meeting;
+import com.example.stoplichtenevaluatieapp.util.Parser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
+import com.google.firebase.firestore.util.Util;
+import com.google.gson.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -53,6 +56,7 @@ public class ListFragment extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        final ListFragment that = this;
         super.onViewCreated(view, savedInstanceState);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -61,6 +65,18 @@ public class ListFragment extends Fragment {
 
         meetingsView = (ListView)view.findViewById(R.id.meetingsThisDay);
         meetings = new ArrayList<Meeting>();
+
+        meetingsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle b = new Bundle();
+                String meetingJsonString = Parser.getGsonParser().toJson(parent.getItemAtPosition(position));
+                b.putString("Meeting", meetingJsonString);
+                Intent intent = new Intent(that.getActivity(), MeetingActivity.class);
+                intent.putExtra("data", b);
+                startActivity(intent);
+            }
+        });
 
         loadingPanel = view.findViewById(R.id.loadingPanel);
         noMeetingsFound = view.findViewById(R.id.no_meetings_found_message);
@@ -120,6 +136,7 @@ public class ListFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Meeting meetingToAdd = document.toObject(Meeting.class);
+                                meetingToAdd.ref = document.getReference().getId();
                                 meetings.add(meetingToAdd);
                             }
                             if (meetings.size() < 1) {

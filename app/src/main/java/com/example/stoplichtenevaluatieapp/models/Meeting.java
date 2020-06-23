@@ -2,17 +2,29 @@ package com.example.stoplichtenevaluatieapp.models;
 
 
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class Meeting {
+    public String ref;
+    private String id;
     private Timestamp date;
     private String name;
     private String description;
     private List<Comment> comments;
+    private long red;
+    private long orange;
+    private long green;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Timestamp getDate() {
         return date;
@@ -51,4 +63,27 @@ public class Meeting {
         return sfd.format(this.date.toDate()).toString();
     }
 
+    public long getRed() {
+        return red;
+    }
+
+    public void setRed(long red) {
+        this.red = red;
+    }
+
+    public long getOrange() {
+        return orange;
+    }
+
+    public void setOrange(long orange) {
+        this.orange = orange;
+    }
+
+    public long getGreen() {
+        return green;
+    }
+
+    public void setGreen(long green) {
+        this.green = green;
+    }
 }

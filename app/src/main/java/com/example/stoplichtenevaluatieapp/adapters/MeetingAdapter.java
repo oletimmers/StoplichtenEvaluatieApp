@@ -47,6 +47,8 @@ public class MeetingAdapter extends ArrayAdapter<Meeting> {
 //        }
 //    }
 
+
+
     private int lastPosition = -1;
 
     @Override
