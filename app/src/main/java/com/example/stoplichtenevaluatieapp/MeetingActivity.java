@@ -13,6 +13,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -50,6 +51,8 @@ public class MeetingActivity extends AppCompatActivity {
         Bundle data = getIntent().getBundleExtra("data");
         String meetingJsonString = (String)data.get("Meeting");
         meeting = Parser.getGsonParser().fromJson(meetingJsonString, Meeting.class);
+        meetingRef = db.collection("meetings").document(meeting.ref);
+
 
         meetingNameDisplay = findViewById(R.id.meeting_name);
         meetingDateDisplay = findViewById(R.id.meeting_date);
@@ -60,6 +63,20 @@ public class MeetingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 clickRed();
+            }
+        });
+        orange = findViewById(R.id.orange_circle);
+        orange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickOrange();
+            }
+        });
+        green = findViewById(R.id.green_circle);
+        green.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickGreen();
             }
         });
 
@@ -83,13 +100,47 @@ public class MeetingActivity extends AppCompatActivity {
     }
 
     private void clickRed() {
-        meetingRef = db.collection("meetings").document(meeting.ref);
         meetingRef
-                .update("red", meeting.getRed() + 1)
+                .update("red", FieldValue.increment(1))
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully updated!");
+                        meeting.increaseRed();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error updating document", e);
+                    }
+                });
+    }
+    private void clickOrange() {
+        meetingRef
+                .update("orange", FieldValue.increment(1))
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully updated!");
+                        meeting.increaseOrange();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error updating document", e);
+                    }
+                });
+    }
+    private void clickGreen() {
+        meetingRef
+                .update("green", FieldValue.increment(1))
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully updated!");
+                        meeting.increaseGreen();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

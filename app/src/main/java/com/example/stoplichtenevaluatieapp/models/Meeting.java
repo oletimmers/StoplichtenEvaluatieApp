@@ -9,7 +9,6 @@ import java.util.List;
 
 public class Meeting {
     public String ref;
-    private String id;
     private Timestamp date;
     private String name;
     private String description;
@@ -18,13 +17,6 @@ public class Meeting {
     private long orange;
     private long green;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public Timestamp getDate() {
         return date;
@@ -71,6 +63,11 @@ public class Meeting {
         this.red = red;
     }
 
+    public long increaseRed() {
+        this.red ++;
+        return this.red;
+    }
+
     public long getOrange() {
         return orange;
     }
@@ -79,11 +76,21 @@ public class Meeting {
         this.orange = orange;
     }
 
+    public long increaseOrange() {
+        this.orange ++;
+        return this.orange;
+    }
+
     public long getGreen() {
         return green;
     }
 
     public void setGreen(long green) {
         this.green = green;
+    }
+
+    public long increaseGreen() {
+        this.green ++;
+        return this.green;
     }
 }
