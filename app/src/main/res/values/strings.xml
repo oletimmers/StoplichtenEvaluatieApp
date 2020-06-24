@@ -33,6 +33,7 @@
     <string name="meeting">Bijeenkomst</string>
     <string name="title_activity_meeting">ScrollingActivity</string>
     <string name="explainer_traffic_lights">Klik op een van de stoplichten om deze bijeenkomst te beoordelen</string>
+    <string name="explainer_already_voted">Je hebt al gestemd op deze bijeenkomst</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

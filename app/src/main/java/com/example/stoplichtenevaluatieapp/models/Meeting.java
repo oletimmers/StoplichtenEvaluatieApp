@@ -13,9 +13,10 @@ public class Meeting {
     private String name;
     private String description;
     private List<Comment> comments;
-    private long red;
-    private long orange;
-    private long green;
+    private long red = 0;
+    private long orange = 0;
+    private long green = 0;
+    private long totalVotes = 0;
 
 
     public Timestamp getDate() {
@@ -65,6 +66,7 @@ public class Meeting {
 
     public long increaseRed() {
         this.red ++;
+        this.totalVotes ++;
         return this.red;
     }
 
@@ -78,6 +80,7 @@ public class Meeting {
 
     public long increaseOrange() {
         this.orange ++;
+        this.totalVotes ++;
         return this.orange;
     }
 
@@ -91,6 +94,15 @@ public class Meeting {
 
     public long increaseGreen() {
         this.green ++;
+        this.totalVotes ++;
         return this.green;
+    }
+
+    public long getTotalVotes() {
+        return totalVotes;
+    }
+
+    public void setTotalVotes(long totalVotes) {
+        this.totalVotes = totalVotes;
     }
 }
