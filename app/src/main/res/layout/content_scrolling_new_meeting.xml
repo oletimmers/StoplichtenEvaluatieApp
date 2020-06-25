@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".NewMeeting"
+    tools:showIn="@layout/activity_new_meeting">
+
+
+    <EditText
+        android:id="@+id/new_meeting_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textSize="24sp"
+        android:hint="Titel bijeenkomst"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/new_meeting_date_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:text="Datum"
+        android:textSize="16sp"
+        android:backgroundTint="@color/colorAccent"
+        android:onClick="showDatePickerDialog"
+        app:layout_constraintStart_toStartOf="@+id/new_meeting_name"
+        app:layout_constraintTop_toBottomOf="@+id/new_meeting_name" />
+
+    <EditText
+        android:id="@+id/new_meeting_description"
+        android:layout_width="0dp"
+        android:layout_height="160dp"
+        android:ems="10"
+        android:gravity="left|top"
+        android:hint="Beschrijving"
+        android:inputType="textMultiLine"
+        android:textSize="18sp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/new_meeting_name"
+        app:layout_constraintStart_toStartOf="@+id/new_meeting_date_button"
+        app:layout_constraintTop_toBottomOf="@+id/new_meeting_date_button"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

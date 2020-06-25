@@ -36,6 +36,7 @@ import java.util.Map;
 
 public class MeetingActivity extends AppCompatActivity {
     private static final String TAG = "MeetingActivity";
+    MeetingActivity that = this;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference meetingRef;
@@ -56,6 +57,7 @@ public class MeetingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -96,12 +98,11 @@ public class MeetingActivity extends AppCompatActivity {
 
         toolBarLayout.setTitle(getString(R.string.meeting));
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.delete_meeting_button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
             }
         });
 
@@ -263,7 +264,8 @@ public class MeetingActivity extends AppCompatActivity {
         }
         BigDecimal bgRed = new BigDecimal(percentageRed).setScale(1, RoundingMode.CEILING);
         BigDecimal bgOrange = new BigDecimal(percentageOrange).setScale(1, RoundingMode.CEILING);
-        BigDecimal bgGreen = new BigDecimal(percentageGreen).setScale(1, RoundingMode.CEILING);
+        BigDecimal bgGreen = new BigDecimal(percentageGreen).setScale(1
+                , RoundingMode.CEILING);
         rateRed.setText(bgRed.toString() + "%");
         rateOrange.setText(bgOrange.toString() + "%");
         rateGreen.setText(bgGreen.toString() + "%");

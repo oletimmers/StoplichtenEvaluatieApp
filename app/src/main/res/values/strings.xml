@@ -34,6 +34,7 @@
     <string name="title_activity_meeting">ScrollingActivity</string>
     <string name="explainer_traffic_lights">Klik op een van de stoplichten om deze bijeenkomst te beoordelen</string>
     <string name="explainer_already_voted">Je hebt al gestemd op deze bijeenkomst</string>
+    <string name="new_meeting_title">Nieuw</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -43,4 +44,5 @@
         "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
         "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
     </string>
+    <string name="title_activity_new_meeting">ScrollingActivity</string>
 </resources>
