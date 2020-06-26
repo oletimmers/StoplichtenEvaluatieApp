@@ -1,5 +1,6 @@
 package com.example.stoplichtenevaluatieapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -69,6 +71,29 @@ public class MeetingActivity extends AppCompatActivity {
         meeting = Parser.getGsonParser().fromJson(meetingJsonString, Meeting.class);
         meetingRef = db.collection("meetings").document(meeting.ref);
 
+        FloatingActionButton backToHome = (FloatingActionButton) findViewById(R.id.back_to_home_from_meeting);
+        backToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MeetingActivity.this, HomeScreen.class);
+                startActivity(intent);
+            }
+        });
+
+        final FloatingActionButton deleteMeeting = (FloatingActionButton) findViewById(R.id.delete_meeting_button);
+        deleteMeeting.setVisibility(View.GONE);
+
+
+        if (meeting.getCreator().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+            deleteMeeting.setVisibility(View.VISIBLE);
+            deleteMeeting.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deleteMeeting();
+                }
+            });
+        }
+
 
         /*
         Vanaf hier is de meeting in de activity geladen
@@ -102,7 +127,16 @@ public class MeetingActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                new MaterialAlertDialogBuilder(that, R.style.Theme_MaterialComponents_MaterialAlertDialog)
+                        .setTitle("Bijeenkomst verwijderen")
+                        .setMessage("Weet je zeker dat je deze bijeenkomst wilt verwijderen?")
+                        .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
 
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                deleteMeeting();
+                            }})
+                        .setNegativeButton("Nee", null)
+                        .show();
             }
         });
 
@@ -269,6 +303,24 @@ public class MeetingActivity extends AppCompatActivity {
         rateRed.setText(bgRed.toString() + "%");
         rateOrange.setText(bgOrange.toString() + "%");
         rateGreen.setText(bgGreen.toString() + "%");
+    }
+
+    private void deleteMeeting() {
+        db.collection("meetings").document(meeting.ref).delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                        Intent intent = new Intent(MeetingActivity.this, HomeScreen.class);
+                        startActivity(intent);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });
     }
 
 }

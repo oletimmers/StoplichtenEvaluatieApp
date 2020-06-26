@@ -32,9 +32,9 @@
         android:layout_gravity="bottom|start"
         android:layout_margin="@dimen/fab_margin"
 
+        app:tint="@android:color/white"
         app:backgroundTint="@color/colorPrimaryDark"
         app:srcCompat="@drawable/ic_baseline_exit_to_app_24"
-        app:tint="@android:color/white"
         />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

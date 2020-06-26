@@ -35,6 +35,7 @@
     <string name="explainer_traffic_lights">Klik op een van de stoplichten om deze bijeenkomst te beoordelen</string>
     <string name="explainer_already_voted">Je hebt al gestemd op deze bijeenkomst</string>
     <string name="new_meeting_title">Nieuw</string>
+    <string name="incorrect_values_new_meeting">Alle velden dienen ingevuld te worden</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

@@ -5,19 +5,30 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Meeting {
     public String ref;
+    private String creator;
     private Timestamp date;
     private String name;
     private String description;
-    private List<Comment> comments;
+    private ArrayList<String> comments;
     private long red = 0;
     private long orange = 0;
     private long green = 0;
     private long totalVotes = 0;
 
+    public Meeting() {}
+
+    public Meeting(String creator, Timestamp date, String name, String description) {
+        this.creator = creator;
+        this.date = date;
+        this.name = name;
+        this.description = description;
+        this.comments = new ArrayList<String>();
+    }
 
     public Timestamp getDate() {
         return date;
@@ -43,11 +54,11 @@ public class Meeting {
         this.description = description;
     }
 
-    public List<Comment> getComments() {
+    public ArrayList<String> getComments() {
         return comments;
     }
 
-    public void setComments(List<Comment> comments) {
+    public void setComments(ArrayList<String> comments) {
         this.comments = comments;
     }
 
@@ -104,5 +115,13 @@ public class Meeting {
 
     public void setTotalVotes(long totalVotes) {
         this.totalVotes = totalVotes;
+    }
+
+    public String getCreator() {
+        return creator != null ? creator : "";
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 }
