@@ -150,6 +150,7 @@ public class NewMeeting extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(NewMeeting.this,R.string.meeting_created, Toast.LENGTH_LONG).show();
                         meetingToPost.ref = documentReference.getId();
                         Bundle b = new Bundle();
                         String meetingJsonString = Parser.getGsonParser().toJson(meetingToPost);
@@ -162,6 +163,7 @@ public class NewMeeting extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(NewMeeting.this,R.string.meeting_not_created, Toast.LENGTH_LONG).show();
                         Log.w(TAG, "Error adding document", e);
                     }
                 });

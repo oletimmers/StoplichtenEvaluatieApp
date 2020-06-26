@@ -119,6 +119,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.7"
             app:layout_constraintStart_toStartOf="parent" />
+
         <TextView
             android:id="@+id/rateGreen"
             android:layout_width="wrap_content"
@@ -131,6 +132,34 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.7"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/new_meeting_comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:hint="@string/place_comment"
+            android:inputType="text"
+
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/green_circle"
+            app:layout_constraintTop_toBottomOf="@+id/green_circle" />
+
+        <Button
+            android:id="@+id/new_meeting_comment_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/send_comment"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+
+            app:layout_constraintStart_toStartOf="@+id/new_meeting_comment"
+            app:layout_constraintTop_toBottomOf="@+id/new_meeting_comment" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

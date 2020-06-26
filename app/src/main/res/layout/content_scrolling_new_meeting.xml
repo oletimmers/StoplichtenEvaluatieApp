@@ -9,6 +9,7 @@
     tools:showIn="@layout/activity_new_meeting">
 
 
+
     <EditText
         android:id="@+id/new_meeting_name"
         android:layout_width="0dp"

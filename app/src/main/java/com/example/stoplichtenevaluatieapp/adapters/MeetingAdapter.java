@@ -32,31 +32,13 @@ public class MeetingAdapter extends ArrayAdapter<Meeting> {
         this.mContext = context;
     }
 
-//    @Override
-//    public void onClick(View v) {
-//        int position=(Integer) v.getTag();
-//        Object object= getItem(position);
-//        Meeting meeting=(Meeting)object;
-//
-//        switch (v.getId())
-//        {
-//            case R.id.meeting:
-//                Snackbar.make(v, "Open " +meeting.getName(), Snackbar.LENGTH_LONG)
-//                        .setAction("No action", null).show();
-//                break;
-//        }
-//    }
-
-
-
     private int lastPosition = -1;
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Get the data item for this position
         Meeting meeting = getItem(position);
-        // Check if an existing view is being reused, otherwise inflate the view
-        MeetingItemHolder viewHolder; // view lookup cache stored in tag
+
+        MeetingItemHolder viewHolder;
 
         final View result;
 
@@ -82,9 +64,7 @@ public class MeetingAdapter extends ArrayAdapter<Meeting> {
 
         viewHolder.txtTitle.setText(meeting.getName());
         viewHolder.txtDescription.setText(meeting.getDescription());
-//        viewHolder.info.setOnClickListener(this);
-//        viewHolder.info.setTag(position);
-        // Return the completed view to render on screen
+
         return convertView;
     }
 

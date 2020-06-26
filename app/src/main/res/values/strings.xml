@@ -19,7 +19,7 @@
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_password">Password must be >5 characters</string>gf
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_home_screen">HomeScreen</string>
     <string name="meetings">Bijeenkomsten</string>
@@ -36,6 +36,19 @@
     <string name="explainer_already_voted">Je hebt al gestemd op deze bijeenkomst</string>
     <string name="new_meeting_title">Nieuw</string>
     <string name="incorrect_values_new_meeting">Alle velden dienen ingevuld te worden</string>
+    <string name="incorrect_value_new_comment">Type eerst een comment</string>
+    <string name="get_meeting_failed">Kan bijeenkomst niet ophalen</string>
+    <string name="place_comment">Plaats commentaar</string>
+    <string name="send_comment">Verstuur commentaar</string>
+    <string name="comment_placed">Commentaar geplaatst</string>
+    <string name="comment_not_placed">Commentaar niet geplaatst</string>
+    <string name="vote_registerd">Stem geregistreerd</string>
+    <string name="vote_not_registerd">Stem niet geregistreerd</string>
+    <string name="meeting_deleted">Bijeenkomst verwijderd</string>
+    <string name="meeting_not_deleted">Bijeenkomst niet verwijderd</string>
+    <string name="meeting_created">Bijeenkomst aangemaakt</string>
+    <string name="meeting_not_created">Bijeenkomst niet aangemaakt</string>
+    <string name="signed_out">Uitgelogd</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

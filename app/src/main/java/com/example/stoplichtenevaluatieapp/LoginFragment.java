@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,9 @@ public class LoginFragment extends Fragment {
     private FirebaseAuth mAuth;
     private Boolean firstTryDone = false;
 
+    RelativeLayout loadingPanel;
+
+
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -44,12 +48,16 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         final EditText username = (EditText)view.findViewById(R.id.username);
         final EditText password = (EditText)view.findViewById(R.id.password);
+        loadingPanel = view.findViewById(R.id.loadingPanel_login);
+        loadingPanel.setVisibility(View.GONE);
+
         if (!User.newUser) {
             TextView explainer = view.findViewById(R.id.pw_explainer);
             explainer.setVisibility(View.GONE);
             view.findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    loadingPanel.setVisibility(View.VISIBLE);
                     login(username.getText().toString(), password.getText().toString());
                 }
             });
@@ -61,6 +69,7 @@ public class LoginFragment extends Fragment {
             loginButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    loadingPanel.setVisibility(View.VISIBLE);
                     register(username.getText().toString(), password.getText().toString());
                 }
             });
@@ -79,8 +88,6 @@ public class LoginFragment extends Fragment {
     public void  updateUI(FirebaseUser account){
         if(account != null){
             Toast.makeText(this.getActivity(),R.string.successful_login, Toast.LENGTH_LONG).show();
-//            NavHostFragment.findNavController(LoginFragment.this)
-//                    .navigate(R.id.action_LoginFragment_to_FirstFragment);
             Intent intent = new Intent(this.getActivity(), HomeScreen.class);
             startActivity(intent);
         }else if (firstTryDone) {
@@ -107,6 +114,7 @@ public class LoginFragment extends Fragment {
                     .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            loadingPanel.setVisibility(View.GONE);
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "signInWithEmail:success");
@@ -130,6 +138,7 @@ public class LoginFragment extends Fragment {
                     .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            loadingPanel.setVisibility(View.GONE);
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "createUserWithEmailAndPassword:success");

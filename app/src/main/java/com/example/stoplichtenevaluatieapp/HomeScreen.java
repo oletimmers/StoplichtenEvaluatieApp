@@ -17,6 +17,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class HomeScreen extends AppCompatActivity {
 
@@ -48,6 +49,7 @@ public class HomeScreen extends AppCompatActivity {
 
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 FirebaseAuth.getInstance().signOut();
+                                Toast.makeText(HomeScreen.this, R.string.signed_out, Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(that, MainActivity.class);
                                 startActivity(intent);
                             }})
